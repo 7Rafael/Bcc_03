@@ -3,8 +3,7 @@ from sqlalchemy.exc import SQLAlchemyError, IntegrityError
 from db import db
 from models import StoreModel
 
-import uuid
-from flask import request
+from flask_jwt_extended import jwt_required
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
@@ -13,7 +12,7 @@ from db import stores
 
 blp = Blueprint("stores", __name__, description="operations on stores")
 
-@blp.route("/store/<string:store_id>")
+@blp.route("/store/<int:store_id>")
 class Store(MethodView):
     @blp.response(200, StoreSchema)
     def get(self, store_id):
