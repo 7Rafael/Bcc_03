@@ -37,3 +37,17 @@ class TagAndItemSchema(Schema):
     message = fields.Str()
     item = fields.Nested(ItemSchema)
     tag = fields.Nested(TagSchema)
+
+class UserSchema(Schema):
+    id = fields.Int(dump_only=True)
+    username = fields.Str(required=True)
+    password =fields.Str(required=True, load_only=True)
+    email= fields.Str(required=True)
+    role = fields.Str(required=True)
+
+class UserSchemaLogin(Schema):
+    id = fields.Int(dump_only=True)
+    username = fields.Str(required=True)
+    password =fields.Str(required=True, load_only=True)
+    email= fields.Str(required=False)
+    role = fields.Str(required=False)
