@@ -5,8 +5,9 @@ from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 from blocklist import BLOCKLIST
-import models
 from db import db
+from resources.cartItem import blp as CartItemBlueprint
+from resources.cart import blp as CartBlueprint
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
@@ -73,6 +74,8 @@ def create_app(db_url=None):
             db.create_all()
 
         logging.debug("Registering blueprints.")
+        api.register_blueprint(CartBlueprint)
+        api.register_blueprint(CartItemBlueprint)
         api.register_blueprint(ItemBlueprint)
         api.register_blueprint(StoreBlueprint)
         api.register_blueprint(TagBlueprint)

@@ -8,7 +8,7 @@ from flask_smorest import Blueprint,abort
 
 from schemas import ItemSchema, ItemUpdateSchema
 
-from db import items
+from db import db
 
 blp = Blueprint("Items", __name__, description="Operation on items")
 
@@ -19,7 +19,7 @@ class Item(MethodView):
     def get(self, item_id):
         item = ItemModel.query.get_or_404(item_id)
         return item
-    
+    @jwt_required()
     def delete(self, item_id):
         item = ItemModel.query.get_or_404(item_id)
         db.session.delete(item)
@@ -56,6 +56,6 @@ class ItemList(MethodView):
             db.session.add(item)
             db.session.commit()
         except SQLAlchemyError:
-            abort(500, mesasge="An error ocurred while inserting the item.")
+            abort(500, message="An error ocurred while inserting the item.")
 
         return item
