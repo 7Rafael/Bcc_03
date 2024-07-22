@@ -51,3 +51,17 @@ class UserSchemaLogin(Schema):
     password =fields.Str(required=True, load_only=True)
     email= fields.Str(required=False)
     role = fields.Str(required=False)
+class CartSchema(Schema):
+    id = fields.Int(dump_only=True)
+    created_date = fields.DateTime(required=True)
+    updated_date = fields.DateTime(required=False)
+    user_id = fields.Int(required=True)
+class CartItemSchema(Schema):
+    id = fields.Int(dump_only=True)
+    cart_id=fields.Int(required = True)
+    item_id=fields.Int(required = True)
+    quantity=fields.Int(required = True)
+class CartItemSchemaUpdate(Schema):
+    cart_id=fields.Int(required = False)
+    item_id=fields.Int(required = True)
+    quantity=fields.Int(required = True)

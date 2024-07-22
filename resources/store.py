@@ -8,7 +8,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 
 from schemas import StoreSchema
-from db import stores
+from db import db
 
 blp = Blueprint("stores", __name__, description="operations on stores")
 
