@@ -8,3 +8,4 @@ class UserModel(db.Model):
     email = db.Column(db.String(500), unique = True, nullable = False)
     password = db.Column(db.String, unique=True, nullable = False)
     role = db.Column(db.String, unique=False, nullable = False)
+    endereco = db.Column(db.String, unique = False, nullable = False)

@@ -44,13 +44,16 @@ class UserSchema(Schema):
     password =fields.Str(required=True, load_only=True)
     email= fields.Str(required=True)
     role = fields.Str(required=True)
+    endereco = fields.Str(required=True)
 
 class UserSchemaLogin(Schema):
     id = fields.Int(dump_only=True)
-    username = fields.Str(required=True)
+    username = fields.Str(required=False)
     password =fields.Str(required=True, load_only=True)
-    email= fields.Str(required=False)
+    email= fields.Str(required=True)
     role = fields.Str(required=False)
+    endereco = fields.Str(required=False)
+
 class CartSchema(Schema):
     id = fields.Int(dump_only=True)
     created_date = fields.DateTime(required=True)
